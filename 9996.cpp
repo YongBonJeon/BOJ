@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main()
+/*int main()
 {
     int N;
     string pattern;
@@ -65,5 +65,31 @@ int main()
         else
             printf("NE\n");
         //cout << copy;
+    }
+}
+*/
+
+int main()
+{
+    int N;
+    string pattern;
+    vector<string> input;
+
+    cin >> N >> pattern;
+    int pos = pattern.find('*');
+    string prefix = pattern.substr(0,pos);
+    string suffix = pattern.substr(pos+1);
+
+    for(int i = 0 ; i < N ; i++)
+    {
+        string tmp;
+        cin >> tmp;
+        if(prefix == tmp.substr(0,pos) && suffix == tmp.substr(tmp.size()-suffix.size()))
+        {
+            printf("DA\n");
+        }
+        else
+            printf("NE\n");
+
     }
 }
