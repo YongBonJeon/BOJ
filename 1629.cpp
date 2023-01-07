@@ -1,18 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+long long solve(long long a, long long b, long long c)
+{
+    if(b == 1)
+        return a % c;
+    long long result = solve(a, b/2, c);
+    result = (result*result) % c;
+    if(b % 2)
+        result = (result*a) % c;
+    return result;
+}
+
 int main()
 {
-    int A,B,C;
+    long long A,B,C;
 
-    scanf("%d %d %d",&A,&B,&C);
+    scanf("%lld %lld %lld",&A,&B,&C);
 
-    // A^B%C
-    int ans = 1;
-
-    for(int i = 0 ; i < B ; i++)
-    {
-        ans = (ans*(A%C))%C;
-    }
-    printf("%d\n",ans);
+    printf("%lld\n",solve(A,B,C));
 }
