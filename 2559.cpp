@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/* Slinding window or prefix sum*/
+
 int main()
 {
     int N,K;
@@ -16,7 +18,7 @@ int main()
 
         input.push_back(tmp);
     }
-
+ 
     for(int i = 0 ; i < K ; i++)
         sum += input[i];
     max = sum;
