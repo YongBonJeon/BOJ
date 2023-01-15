@@ -7,5 +7,6 @@
 [1012](https://velog.io/@bon0057/CC-%EB%B0%B1%EC%A4%80-1012%EB%B2%88-%EB%AC%B8%EC%A0%9C)
 [2178](https://velog.io/@bon0057/CC-%EB%B0%B1%EC%A4%80-2178%EB%B2%88-%EB%AF%B8%EB%A1%9C-%ED%83%90%EC%83%89)
 [2468](https://velog.io/@bon0057/CC-%EB%B0%B1%EC%A4%80-2468%EB%B2%88-%EC%95%88%EC%A0%84-%EC%98%81%EC%97%AD)
+[1992](https://velog.io/@bon0057/CC-%EB%B0%B1%EC%A4%80-1992%EB%B2%88-%EC%BF%BC%EB%93%9C-%ED%8A%B8%EB%A6%AC)
 ## 10988번 문제
 > Two pointer 방식으로 해결, reverse를 활용하는 것도 C++이기에 가능할 듯 
