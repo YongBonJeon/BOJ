@@ -52,20 +52,6 @@ int main()
             {
                 if(m[p][q] && !visited[p][q])
                 {
-                    /*for(int z = 0 ; z < M ; z++){
-                        for(int c = 0 ; c < N ; c++)
-                            printf("%d ",m[z][c]);
-                        printf("\n");
-                    }
-                    for(int z = 0 ; z < M ; z++){
-                        for(int c = 0 ; c < N ; c++)
-                            printf("%d ",visited[z][c]);
-                        printf("\n");
-                    }
-                    
-                    printf("_%d %d\n", p, q);
-                    
-                    */
                     dfs(p,q);
                     ans++;
                 }
@@ -73,5 +59,4 @@ int main()
         }
         printf("%d\n",ans);
     }
-
 }

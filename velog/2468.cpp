@@ -36,7 +36,6 @@ int main()
             if(m[i][j] > max_height)
                 max_height = m[i][j];
         }
-    //printf("h %d\n",max_height);
     int max_component = 0;
     for(int i = 0 ; i < max_height ; i++)
     {
@@ -49,7 +48,6 @@ int main()
             {
                 if(!visited[j][k] && m[j][k] > i)
                 {
-                    //printf("%d %d %d\n",i,j,k);
                     dfs(j,k, i);
                     temp++;
                 }

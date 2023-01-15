@@ -5,14 +5,12 @@ vector<int> input;
 
 void combination(int start, vector<int> v)
 {
-    //cout << "z" << v.size() <<"\n";
     if(v.size() == 7)
     {
         if(accumulate(v.begin(),v.end(),0) == 100)
         {
             for(int i = 0 ; i < 7 ; i++)
                 printf("%d\n",v[i]);
-            //cout << accumulate(v.begin(),v.end(), 0) << "\n";
             exit(0);
         }
     }
