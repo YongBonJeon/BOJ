@@ -6,13 +6,13 @@ int m[101][101];
 int visited[101][101];
 int dy[4] = {-1,0,1,0};
 int dx[4] = {0,1,0,-1};
-int qwer = 0;
+int area = 0;
 void dfs(int y, int x)
 {
     int ny, nx;
 
     visited[y][x] = 1;
-    qwer++;
+    area++;
 
     for(int i = 0 ; i < 4 ; i++)
     {
@@ -44,15 +44,6 @@ int main()
                 m[j][k]--;
     }
 
-    /*for(int i = 0 ; i < M ; i++)
-    {
-        for(int j = 0 ; j < N ; j++)
-        {
-            printf("%d ",m[i][j]);
-        }
-        printf("\n");
-    }*/
-
     vector<int> ans;
     for(int i = 0 ; i < M ; i++)
     {
@@ -60,9 +51,9 @@ int main()
         {
             if(!visited[i][j] && m[i][j] >= 0)
             {
-                qwer = 0;
+                area = 0;
                 dfs(i,j);
-                ans.push_back(qwer);
+                ans.push_back(area);
             }
         }
     }
