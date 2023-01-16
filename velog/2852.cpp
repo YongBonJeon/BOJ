@@ -12,12 +12,9 @@ int main()
     int team;
     string time;
 
-    int minute=0;
-    int second=0;
-    int last_minute = 0;
-    int last_second = 0;
-    int win1 = 0;
-    int win2 = 0;
+    int minute=0,second=0;
+    int last_minute = 0,last_second = 0;
+    int win1 = 0,win2 = 0;
 
     for(int i = 0 ; i < N ; i++)
     {
