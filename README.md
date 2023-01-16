@@ -1,18 +1,12 @@
 # BOJ
   백준 문제를 풀고 있습니다.
   
-## [1541번 문제](https://velog.io/@bon0057/CC-%EB%B0%B1%EC%A4%80-1541%EB%B2%88-%EC%9E%83%EC%96%B4%EB%B2%84%EB%A6%B0-%EA%B4%84%ED%98%B8)
-> 연산자와 피연산자를 따로 입력받지 않기 때문에 parsing이 필요하고 greedy 알고리즘을 사용하기에 연산자
-앞뒤의 피연산자 정보가 바로 필요하기에 미리 parsing을 해서 문제를 쉽게 풀 수 있었다.
-
-## 2309번 문제
-> 재귀를 기반으로 조합을 구하는 방식으로 구현
-
-## 2979번 문제
-> 단순 구현
-
-## 10808번 문제
-> 단순 구현
-
+[1541](https://velog.io/@bon0057/CC-%EB%B0%B1%EC%A4%80-1541%EB%B2%88-%EC%9E%83%EC%96%B4%EB%B2%84%EB%A6%B0-%EA%B4%84%ED%98%B8)
+[2309](https://velog.io/@bon0057/CC-%EB%B0%B1%EC%A4%80-2309%EB%B2%88-%EC%9D%BC%EA%B3%B1-%EB%82%9C%EC%9F%81%EC%9D%B4)
+[10808](https://velog.io/@bon0057/CC-%EB%B0%B1%EC%A4%80-10808%EB%B2%88-%EC%95%8C%ED%8C%8C%EB%B2%B3-%EA%B0%9C%EC%88%98)
+[1012](https://velog.io/@bon0057/CC-%EB%B0%B1%EC%A4%80-1012%EB%B2%88-%EB%AC%B8%EC%A0%9C)
+[2178](https://velog.io/@bon0057/CC-%EB%B0%B1%EC%A4%80-2178%EB%B2%88-%EB%AF%B8%EB%A1%9C-%ED%83%90%EC%83%89)
+[2468](https://velog.io/@bon0057/CC-%EB%B0%B1%EC%A4%80-2468%EB%B2%88-%EC%95%88%EC%A0%84-%EC%98%81%EC%97%AD)
+[1992](https://velog.io/@bon0057/CC-%EB%B0%B1%EC%A4%80-1992%EB%B2%88-%EC%BF%BC%EB%93%9C-%ED%8A%B8%EB%A6%AC)
 ## 10988번 문제
 > Two pointer 방식으로 해결, reverse를 활용하는 것도 C++이기에 가능할 듯 
