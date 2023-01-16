@@ -32,9 +32,7 @@ int check3(string input)
 {
     for(int i = 0 ; i < (int)(input.size())-1 ; i++)
     {
-        //printf("%c %c",input[i],input[i+1]);
         if(input[i] == input[i+1]){
-            //printf("sibal");
             if(input[i] == 'e' || input[i] == 'o')
                 continue;
             return 0;
@@ -55,17 +53,14 @@ int main()
             break;
 
         if(check1(input) == 0){
-            //printf("1\n");
             printf("<%s> is not acceptable.\n",input.c_str());
             continue;
         }
         if(check2(input) == 0){
-            //printf("2\n");
             printf("<%s> is not acceptable.\n",input.c_str());
             continue;
         }
         if(check3(input) == 0){
-            //printf("3\n");
             printf("<%s> is not acceptable.\n",input.c_str());
             continue;
         }

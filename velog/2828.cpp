@@ -10,22 +10,21 @@ int main()
 
     int ans = 0;
     int cur = M;
-    int ap;
+    int apple;
     for(int i = 0 ; i < K ; i++)
     {
-        scanf("%d",&ap);
+        scanf("%d",&apple);
 
-        if(ap > cur)
+        if(apple > cur)
         {
-            ans += ap-cur;
-            cur += ap-cur;
+            ans += apple-cur;
+            cur += apple-cur;
         }
-        else if(ap < cur-M+1)
+        else if(apple < cur-M+1)
         {
-            ans += cur-M+1-ap;
-            cur = ap+M-1;
+            ans += cur-M+1-apple;
+            cur = apple+M-1;
         }
-        //printf("%d %d\n",cur, ans);
     }
     printf("%d\n",ans);
 }
