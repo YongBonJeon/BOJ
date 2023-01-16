@@ -8,20 +8,9 @@ int solve(int n)
 {
     int num_5 = 0;
 
-    for(int i = n ; i >= 2 ; i--)
+    for(int i = 5 ; i <= n ; i*=5)
     {
-        int temp = i;
-        /*while(temp % 2 == 0)
-        {
-            num_2++;
-            temp = temp/2;
-        }*/
-
-        while(temp % 5 == 0)
-        {
-            num_5++;
-            temp = temp/5;
-        }
+        num_5 += n / i;
     }
     return num_5;
 }
@@ -38,7 +27,6 @@ int main()
 
         scanf("%d",&N);
 
-        //input.push_back(N);
         printf("%d\n",solve(N));
     }
 }
