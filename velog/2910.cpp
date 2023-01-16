@@ -8,7 +8,6 @@ bool compare(pair <int, pair<int, int>> &a, pair <int, pair<int, int>> &b)
     if(a.second.first != b.second.first)
         return a.second.first > b.second.first;
     else{
-        //printf("x");
         return a.second.second < b.second.second;
     }
 }
@@ -20,19 +19,18 @@ int main()
     map<int, pair<int, int>> m;
     vector<int> idx;
     
-    int temp;
+    int input;
     for(int i = 0 ; i < N ; i++)
     {
-        scanf("%d",&temp);
+        scanf("%d",&input);
 
-        if(m.find(temp) == m.end())
+        if(m.find(input) == m.end())
         {
-            m.insert({temp,{1,i}});
-            //idx.push_back(temp);
+            m.insert({input,{1,i}});
         }
         else
         {
-            m.find(temp)->second.first++;
+            m.find(input)->second.first++;
         }
     }
 

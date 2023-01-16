@@ -15,29 +15,14 @@ void split_digit(string input, vector<string> &digit)
     string temp;
     int flag = 0;
     int st = 0;
-/*while(1)
-    {
-        printf("%d\n",atoi(input.c_str()));
-
-    }
-
-    if(atoi(input.c_str())){
-        printf("?");
-        digit.push_back(atoi(input.c_str()));
-        return ;
-    }*/
 
     for(int i = 0 ; i < (int)input.size() ; i++)
     {
-        //printf("%d %d %d\n",flag, st, i);
         if(is_alphabet(input[i]))
         {
             if(flag){
-                //printf("c %d %d\n",st,i);
-                //cout << input.substr(st,i-st) << '\n';
-                temp =input.substr(st, i-st);
+                temp = input.substr(st, i-st);
                 digit.push_back(temp);
-                //st = i;
                 flag = 0;
             }
         }
@@ -50,8 +35,6 @@ void split_digit(string input, vector<string> &digit)
         }
     }
     if(flag){
-        //printf("c %d %d\n",st,i);
-        //cout << input.substr(st) << '\n';
         temp = input.substr(st);
         digit.push_back(temp);
     }
@@ -59,19 +42,9 @@ void split_digit(string input, vector<string> &digit)
 
 bool compare(string a, string b)
 {
-    int lenA = a.length();
-    int lenB = b.length();
-
-    if(lenA < lenB)
-        return true;
-    else if(lenA > lenB)
-        return false;
-    else{
-        if(a.compare(b) < 0)
-            return true;
-        else
-            return false;
-    }
+    if(a.size() == b.size())
+        return a < b;
+    return a.size() < b.size();
 }
 
 int main()
@@ -89,6 +62,7 @@ int main()
         split_digit(input, digit);
     }
 
+    /* 앞 0 삭제  (ex. 00080)*/
     for(string &a : digit)
     {
         int st = 1;
@@ -98,9 +72,9 @@ int main()
             {
                 st++;
             }
-        if(st == a.end()-a.begin())
-            st -= 1;
-        a = a.substr(st);
+            if(st == a.end()-a.begin())
+                st -= 1;
+            a = a.substr(st);
         }
     }
 

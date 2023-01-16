@@ -12,12 +12,10 @@ void solve(int h)
     {
         if(m[h][i] == 'c')
         {
-            //printf("h %d %d\n",h,i);
             st = 1;
 
             while(m[h][i+st] != 'c' && i+st < W)
             {
-                //printf("%d %d\n",h,i+st);
                 ans[h][i+st] = st;
                 st++;
             }
