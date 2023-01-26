@@ -13,9 +13,6 @@ void go(int y, int x)
 {
     int ny, nx;
 
-    //visited[y][x] = 1;
-    //printf("%d %d\n",y,x);
-
     if(max_alpha < path.size())
         max_alpha = path.size();
 
