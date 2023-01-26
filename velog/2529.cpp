@@ -10,10 +10,6 @@ char max_[11];
 
 void go(int idx)
 {
-    /*for(int i = 0 ; i < ans.size() ; i++)
-        printf("%d ",ans[i]);
-    printf("\n");*/
-
     if(ans.size() == N+1)
     {
         char temp[11];
@@ -46,7 +42,6 @@ void go(int idx)
 
     for(int i = 0 ; i <= 9 ; i++)
     {
-        //printf("%d %c\n",idx, ineql[idx]);
         if(find(ans.begin(), ans.end(), i) == ans.end())
         {
             if(ineql[idx] == '<')
@@ -66,7 +61,6 @@ void go(int idx)
                 }
             }
         }
-        
     }
 }
 
