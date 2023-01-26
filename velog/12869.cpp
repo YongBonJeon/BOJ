@@ -1,46 +1,66 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int N, min_ = 10000;
+int N;
+int scv[61][61][61];
 
-int is_all_zero(int a, int b, int c)
+typedef struct tri_
 {
-    if(a <= 0 && b <= 0 && c <= 0)
-        return true;
-    return false;
-}
+    int x,y,z;
+}tri;
+
+tri damage[6] = 
+    {{1,3,9},
+    {1,9,3},
+    {3,1,9},
+    {3,9,1},
+    {9,1,3},
+    {9,3,1}
+    };
 
 void attack(int num, int a, int b, int c)
 {
-    printf("%d num %d %d %d\n",num, a,b,c);
-    if(is_all_zero(a,b,c) || num > min_)
-    {
-        min_ = min(min_, num);
-        return ;
-    }
+    queue<tri> q;
+    int na,nb,nc;
 
-    attack(num+1, a-9, b-3, c-1);
-    attack(num+1, a-9, b-1, c-3);
-    attack(num+1, a-3, b-9, c-1);
-    attack(num+1, a-3, b-1, c-9);
-    attack(num+1, a-1, b-9, c-3);
-    attack(num+1, a-1, b-3, c-9);
+    scv[a][b][c] = 1;
+    q.push({a,b,c});
+
+    while(!q.empty())
+    {
+        tri cur = q.front(); q.pop();
+
+        for(int i = 0 ; i < 6 ; i++)
+        {
+            na = cur.x - damage[i].x;
+            nb = cur.y - damage[i].y;
+            nc = cur.z - damage[i].z;
+
+            na = max(na, 0);
+            nb = max(nb, 0);
+            nc = max(nc, 0);
+
+            if(!scv[na][nb][nc] || scv[na][nb][nc] > scv[cur.x][cur.y][cur.z]+1)
+            {
+                scv[na][nb][nc] = scv[cur.x][cur.y][cur.z] + 1;
+
+                if(na != 0 || nb != 0 || nc != 0)
+                    q.push({na,nb,nc});
+            }
+        }
+    }
 }
 
 int main()
 {
     scanf("%d",&N);
     
-    vector<int> scv(N); 
-    int temp;
+    int temp[3] = {0,};
     for(int i = 0 ; i < N ; i++){
-        scanf("%d",&temp);
-        scv[i] = temp;
+        scanf("%d",&temp[i]);
     }
 
-    sort(scv.begin(), scv.end(), greater<int>());
-    //printf("%d num %d %d %d\n",0, scv[0],scv[1],scv[2]);
-    attack(0, scv[0], scv[1], scv[2]);
+    attack(0, temp[0], temp[1], temp[2]);
 
-    printf("%d\n",min_);
+    printf("%d\n",scv[0][0][0]-1);
 }
