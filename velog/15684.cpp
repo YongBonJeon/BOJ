@@ -14,15 +14,10 @@ bool game()
         for(int level = 1 ; level <= H ; level++)
         {
             if(m[level][v] == 1)
-            {
                 v++;
-            }
             else if(m[level][v-1] == 1)
-            {
                 v--;
-            }
         }
-        //printf("%d %d\n",i,v);
         if(v != i)
             return false; 
     }
