@@ -13,9 +13,6 @@ void gohome(int y, int x, vector<pair<int,int>> ans1)
 
     if(y == 0 && x == C-1){
         if(K == visited[y][x]){
-            /*for(int i = 0 ; i < ans1.size() ; i++)
-                printf("%d %d | ",ans1[i].first,ans1[i].second);
-            printf("\n");*/
             ans++;
         }
         return ;
