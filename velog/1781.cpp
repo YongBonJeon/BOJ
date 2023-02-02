@@ -3,37 +3,47 @@ using namespace std;
 
 int N;
 priority_queue<pair<int,int>> pq;
-int sel[200001] = {0,};
+int parent[200001];
+
+int find(int s)
+{
+    if(s == parent[s])
+        return s;
+    return parent[s] = find(parent[s]);
+}
+
+void merge(int u,int v)
+{
+    parent[v] = u;
+}
 
 int main()
 {   
     scanf("%d",&N);
 
-    int d,w;
+    for(int i = 0 ; i <= N ; i++)
+        parent[i] = i;
+
+    int d,w,ans = 0;
     for(int i = 0 ; i < N ; i++)
     {
         scanf("%d %d",&d,&w);
 
         pq.push({w,d});
     }
-    
-    int ans = 0, md = 0;
+
     for(int i = 0 ; i < N ; i++)
     {
-        d = pq.top().second;
-        w = pq.top().first;
+        int avail = find(pq.top().second);
 
-        for(int j = d ; j > 0 ; j--)
+        if(avail > 0)
         {
-            if(!sel[j]){
-                sel[j] = w;
-                ans += w;
-                break;
-            }
+            merge(find(avail-1),avail);
+        
+            ans += pq.top().first;
         }
         pq.pop();
     }
-    
     printf("%d\n",ans);
-
 }
+  
