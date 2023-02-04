@@ -23,7 +23,8 @@ int main()
     sort(back, back + K);
     sort(jewel, jewel + N);
 
-    int idx = 0, sum = 0;
+    int idx = 0;
+    long long sum = 0;
     for(int i = 0 ; i < K ; i++)
     {
         while(idx < N && jewel[idx].first <= back[i])
@@ -36,5 +37,5 @@ int main()
             pq.pop();
         }
     }
-    printf("%d\n",sum);
+    printf("%lld\n",sum);
 }
