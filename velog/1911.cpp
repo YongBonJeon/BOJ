@@ -16,24 +16,19 @@ int main()
     }
     sort(water.begin(),water.end());
 
-    int result = 0;
+    int result = 0, temp,cur  = 0;
     int last = 0;
     for(auto x : water)
     {
-        int t;
-
         if(last >= x.second)
             continue;
+        cur = max(last, x.first);
 
-        last = max(last+1, x.first);
+        temp = (x.second-cur-1) / L + 1;
+        result += temp;
+        last = cur + temp*L;
 
-        printf("long %d \n",x.second-last+1);
-        result += (x.second-last+1)/L + 1;
-        last = (x.second-last+1)%L;
-        if(last != 0)
-            last = L - last;
-        last += x.second;
-        printf("%d\n",last);
+        //printf("%d %d\n",cur,last);
     }
     printf("%d\n",result);
 }
