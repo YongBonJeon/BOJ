@@ -2,7 +2,7 @@
 using namespace std;
 
 int T,K;
-int tooth[1000][8];
+int tooth[1001][8];
 vector<pair<int,int>> cmd;
 
 void rot(int num, int dir)
@@ -26,25 +26,29 @@ void rot(int num, int dir)
 
 void game(int num, int dir)
 {
+    /* 우선 num 톱니바퀴를 dir 방향으로 회전 */
     int origin = dir;
-    /* num 톱니바퀴를 dir 방향으로 order 상황에 회전시켜라*/
-    int next_num = num;
+    rot(num, origin);
 
-    while(next_num != T && tooth[next_num][2] != tooth[next_num+1][6])
-    { 
-        rot(next_num+1,-dir);
+    /* 우측 톱니바퀴 연쇄 회전 */
+    int next_num = num+1;
+    while(next_num != T+1 && tooth[next_num-1][2+dir] != tooth[next_num][6])
+    {
+        /* 상극일 경우 반대 방향으로 회전 */
+        rot(next_num,-dir);
         next_num++;
         dir = -dir;
     }
     
-    next_num = num;
-    while(next_num != 1 && tooth[next_num][6] != tooth[next_num-1][2])
+    next_num = num-1;
+    dir = origin;
+    while(next_num != 0 && tooth[next_num+1][6+dir] != tooth[next_num][2])
     {
-        rot(next_num-1,-dir);
+        rot(next_num,-dir);
         next_num--;
         dir = -dir;
     }
-    rot(num,origin);
+    
 }
 
 int order()
@@ -56,13 +60,13 @@ int order()
 
         game(num,dir);
 
-        for(int i = 1 ; i <= T ; i++)
+        /*for(int i = 1 ; i <= T ; i++)
         {
             for(int j = 0 ; j < 8 ; j++)
                 printf("%d ",tooth[i][j]);
             printf("\n");
         }
-        printf("\n");
+        printf("\n");*/
     }
 
     int cnt = 0;
@@ -76,10 +80,10 @@ int order()
 int main()
 {
     scanf("%d",&T);
-    for(int i = 0 ; i < T ; i++)
+    for(int i = 1 ; i <= T ; i++)
     {
         for(int j = 0 ; j < 8 ; j++){
-            scanf("%1d",&tooth[i+1][j]);
+            scanf("%1d",&tooth[i][j]);
         }
     }
     scanf("%d",&K);
