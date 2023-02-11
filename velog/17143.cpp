@@ -35,33 +35,24 @@ int main()
     int catchSum = 0;
     for(int man = 1 ; man <= C ; man++)
     {
-        /*for(int i = 1 ; i <= R ; i++){
-            for(int j = 1 ; j <= C ; j++)
-                if(!sharks[i][j].empty())
-                    printf("%d %d %d\n",i,j,sharks[i][j][0].z);
-        }
-        printf("\n\n");*/
-
 
         for(int i = 1 ; i <= R ; i++){
-                for(int j = 1 ; j <= C ; j++){
-                    if(!sharks[i][j].empty())
-                        sharks[i][j][0].move = false;
-                }
+            for(int j = 1 ; j <= C ; j++){
+                if(!sharks[i][j].empty())
+                    sharks[i][j][0].move = false;
             }
+        }
 
         // 상어 잡기
         for(int i = 1 ; i <= R ; i++){
             if(!sharks[i][man].empty()){
-                //printf("%d catch\n",sharks[i][man][0].z);
                 catchSum += sharks[i][man][0].z;
                 sharks[i][man].pop_back();
                 break;
             }
         }
 
-        
-
+    
         // 상어 이동
         for(int i = 1 ; i <= R ; i++){
             for(int j = 1 ; j <= C ; j++){
@@ -83,7 +74,6 @@ int main()
                     else if(dir == 3 || dir == 4)
                         speed = speed % ((C-1)*2);
 
-                    //printf("sp %d %d %d\n",i,j,speed);
                     for(int s = 0 ; s < speed ; s++)
                     {
                         ny += dy[dir];
@@ -105,10 +95,8 @@ int main()
                             nx = C-1;
                             dir++;
                         }
-                        //printf("%d %d\n",ny,nx);
                     }
                     sharks[i][j].erase(sharks[i][j].begin()+k);
-                    //sharks[i][j].pop_back();
                     sharks[ny][nx].push_back({ny,nx,speed,dir,nz,true});
                 }
             }
