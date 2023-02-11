@@ -11,10 +11,15 @@ typedef struct _shark{
     int s;
     int d;
     int z;
-    bool death;
+    bool move;
 }shark;
 
-shark sharks[10000];
+vector<shark> sharks[102][102];
+
+bool cmp(shark a, shark b)
+{
+    return a.z > b.z;
+}
 
 int main()
 {
@@ -24,101 +29,102 @@ int main()
     for(int i = 0 ; i < M ; i++)
     {
         scanf("%d %d %d %d %d",&y,&x,&s,&d,&z);
-        sharks[i].y = y;
-        sharks[i].x = x;
-        sharks[i].s = s;
-        sharks[i].d = d;
-        sharks[i].z = z;
-        sharks[i].death = false;
-        
+        sharks[y][x].push_back({y,x,s,d,z,false});
     }
 
     int catchSum = 0;
     for(int man = 1 ; man <= C ; man++)
     {
-        printf("%d\n",man);
-        for(int sh = 0 ; sh < M ; sh++)
-            printf("%d %d\n",sharks[sh].y, sharks[sh].x);
-        printf("\n\n");
+        /*for(int i = 1 ; i <= R ; i++){
+            for(int j = 1 ; j <= C ; j++)
+                if(!sharks[i][j].empty())
+                    printf("%d %d %d\n",i,j,sharks[i][j][0].z);
+        }
+        printf("\n\n");*/
+
+
+        for(int i = 1 ; i <= R ; i++){
+                for(int j = 1 ; j <= C ; j++){
+                    if(!sharks[i][j].empty())
+                        sharks[i][j][0].move = false;
+                }
+            }
 
         // 상어 잡기
-        int min_ = 10000, min_idx = -1; 
-        for(int sh = 0 ; sh < M ; sh++)
-        {
-            if(!sharks[sh].death && sharks[sh].x == man){
-                if(min_ > sharks[sh].y){
-                    min_ = sharks[sh].y;
-                    min_idx = sh;
-                }
+        for(int i = 1 ; i <= R ; i++){
+            if(!sharks[i][man].empty()){
+                //printf("%d catch\n",sharks[i][man][0].z);
+                catchSum += sharks[i][man][0].z;
+                sharks[i][man].pop_back();
+                break;
             }
         }
 
-        if(min_idx != -1){
-            printf("catch %d\n",sharks[min_idx].z);
-            catchSum += sharks[min_idx].z;
-            sharks[min_idx].death = true;
-        }
+        
 
         // 상어 이동
-        for(int sh = 0 ; sh < M ; sh++)
-        {
-            if(sharks[sh].death) continue;
+        for(int i = 1 ; i <= R ; i++){
+            for(int j = 1 ; j <= C ; j++){
+                if(sharks[i][j].empty())
+                    continue;
+                
+                for(int k = 0 ; k < sharks[i][j].size() ; k++){
+                    if(sharks[i][j][k].move)
+                        continue;
 
-            int speed = sharks[sh].s;
-            int dir = sharks[sh].d;
-            int ny = sharks[sh].y;
-            int nx = sharks[sh].x;
+                    int speed = sharks[i][j][k].s;
+                    int dir = sharks[i][j][k].d;
+                    int ny = sharks[i][j][k].y;
+                    int nx = sharks[i][j][k].x;
+                    int nz = sharks[i][j][k].z;
 
-            if(dir == 1 || dir == 2)
-                speed = speed % ((R-1)*2);
-            else if(dir == 3 || dir == 4)
-                speed = speed % ((C-1)*2);
+                    if(dir == 1 || dir == 2)
+                        speed = speed % ((R-1)*2);
+                    else if(dir == 3 || dir == 4)
+                        speed = speed % ((C-1)*2);
+
+                    //printf("sp %d %d %d\n",i,j,speed);
+                    for(int s = 0 ; s < speed ; s++)
+                    {
+                        ny += dy[dir];
+                        nx += dx[dir];
+
+                        if(ny == 0){
+                            ny = 2;
+                            dir++;
+                        }
+                        if(ny == R+1){
+                            ny = R-1;
+                            dir--;
+                        }
+                        if(nx == 0){
+                            nx = 2;
+                            dir--;
+                        }
+                        if(nx == C+1){
+                            nx = C-1;
+                            dir++;
+                        }
+                        //printf("%d %d\n",ny,nx);
+                    }
+                    sharks[i][j].erase(sharks[i][j].begin()+k);
+                    //sharks[i][j].pop_back();
+                    sharks[ny][nx].push_back({ny,nx,speed,dir,nz,true});
+                }
+            }
+        }
             
-            //printf("sh %d speed %d\n",sh,speed);
-            for(int s = 0 ; s < speed ; s++)
-            {
-                ny += dy[dir];
-                nx += dx[dir];
-
-                if(ny == 0){
-                    ny = 2;
-                    dir++;
-                }
-                if(ny == R+1){
-                    ny = R-1;
-                    dir--;
-                }
-                if(nx == 0){
-                    nx = 2;
-                    dir--;
-                }
-                if(nx == C+1){
-                    nx = C-1;
-                    dir++;
-                }
-                //printf("%d %d\n",ny,nx);
-            }
-
-            sharks[sh].y = ny;
-            sharks[sh].x = nx;
-            sharks[sh].d = dir;
-        }
-
         // 상어 잡아먹기
-        for(int i = 0 ; i < M ; i++){
-            for(int j = i+1 ; j < M ; j++){
-                if(sharks[i].y == sharks[j].y && sharks[i].x == sharks[j].x && !sharks[i].death && !sharks[j].death){
-                    int big = (sharks[i].z > sharks[j].z) ? i : j;
-                    int small = (big == i) ? j : i;
-
-                    sharks[big].z += sharks[small].z;
-                    sharks[small].death = true;
+        for(int i = 1 ; i <= R ; i++){
+            for(int j = 1 ; j <= C ; j++){
+                if(sharks[i][j].size() > 1){
+                    sort(sharks[i][j].begin(),sharks[i][j].end(),cmp);
+                    while(sharks[i][j].size() != 1){
+                        sharks[i][j].pop_back();
+                    }
                 }
             }
         }
-
-
-
     }
     printf("%d\n",catchSum);
 }
