@@ -7,73 +7,58 @@ int m,n;
 int A[1001];
 int B[1001];
 
-int sum_A[1001][1001];
-int sum_B[1001][1001];
+int sum_A[1000001] = {0,};
+int sum_B[1000001] = {0,};
 
 int main()
 {
     scanf("%d",&order);
     scanf("%d %d",&m,&n);
-    int t;
+    int sum = 0;
     for(int i = 0 ; i < m ; i++){
         scanf("%d",&A[i]);
+        sum += A[i];
     }
+    sum_A[sum]++;
+    sum = 0;
     for(int i = 0 ; i < n ; i++){
         scanf("%d",&B[i]);
+        sum += B[i];
     }
+    sum_B[sum]++;
 
     for(int i = 0 ; i < m ; i++){
         int sum = 0;
-        for(int j = 0 ; j < m ; j++){
+        for(int j = 0 ; j < m-1 ; j++){
             sum += A[(i+j)%m];
-            sum_A[i][j] = sum;
+            sum_A[sum]++;
         }
     }
-    for(int i = 1 ; i < m ; i++)
-        sum_A[i][m-1] = 0;
+    sum_A[0]++;
+
     for(int i = 0 ; i < n ; i++){
         int sum = 0;
-        for(int j = 0 ; j < n ; j++){
+        for(int j = 0 ; j < n-1 ; j++){
             sum += B[(i+j)%n];
-            sum_B[i][j] = sum;
+            sum_B[sum]++;
         }
     }
-    for(int i = 1 ; i < n ; i++)
-        sum_B[i][n-1] = 0;
+    sum_B[0]++;
 
-    for(int i = 0 ; i < m ; i++){
-        for(int j = 0 ; j < m ; j++){
-            printf("%d ",sum_A[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n");
-    for(int i = 0 ; i < n ; i++){
-        for(int j = 0 ; j < n ; j++){
-            printf("%d ",sum_B[i][j]);
-        }
-        printf("\n");
+    /*for(int i = 0 ; i <= order ; i++){
+        printf("%d %d \n",i,sum_A[i]);
     }
     printf("\n");
 
+    for(int i = 0 ; i <= order ; i++){
+        printf("%d %d \n",i,sum_B[i]);
+    }
+    printf("\n");*/
     int ans = 0;
-    int need;
-    for(int i = 0 ; i < m ; i++){
-        for(int j = 0 ; j < m ; j++){
-            need = order - sum_A[i][j];
-            if(need == 0)
-                ans++;
-            if(need <= 0)
-                break;
-
-            for(int k = 0 ; k < n ; k++){
-                if(binary_search(sum_B[k],sum_B[k]+n,need)){
-                    ans++;
-                }
-            }
-
-        }
+    for(int i = 0 ; i <= order ; i++){
+        ans += sum_A[i]*sum_B[order-i];
     }
     printf("%d\n",ans);
+
 
 }
