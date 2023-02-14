@@ -14,22 +14,17 @@ bool cmp(vector<int> a, vector<int> b)
 void select(int st, int num, vector<int> idx)
 {    
     int p = 0,f = 0,s = 0,v = 0, cost = 0;
-    //printf("idx ");
-    for(auto i : idx)
-    {
+
+    for(auto i : idx){
         p += val[i][0];
         f += val[i][1];
         s += val[i][2];
         v += val[i][3];
-        cost += val[i][4];
-        //printf("%d ",i);
     }
-    //printf("\n");
-    //printf("%d %d %d %d %d %d\n", num, p,f,s,v,cost);
+  
     if(p >= mp && f >= mf && s >= ms && v >= mv)
     {
-        if(min_ > cost)
-        {
+        if(min_ > cost){
             min_ = cost;
             ans.clear();
             ans.push_back(idx);
@@ -39,10 +34,7 @@ void select(int st, int num, vector<int> idx)
     }
 
 
-    for(int i = st ; i < N ; i++)
-    {
-        //if(val[i][0] == 0 && val[i][1] == 0 && val[i][2] == 0 && val[i][3] == 0)
-        //    continue;
+    for(int i = st ; i < N ; i++){
         idx.push_back(i);
         select(i+1, num+1,idx);
         idx.pop_back();

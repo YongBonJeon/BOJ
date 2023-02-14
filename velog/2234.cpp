@@ -43,14 +43,11 @@ int main()
 
     memset(m,0,sizeof(m));
     int temp;
-    for(int i = 0 ; i < M ; i++)
-    {
-        for(int j = 0 ; j < N ; j++)
-        {
+    for(int i = 0 ; i < M ; i++){
+        for(int j = 0 ; j < N ; j++){
             scanf("%d",&temp);
             
-            for(int k = 0 ; k < 4 ; k++)
-            {
+            for(int k = 0 ; k < 4 ; k++){
                 if((temp & 1))
                     m[i][j][k] = 1;
                 temp >>= 1;
@@ -60,10 +57,8 @@ int main()
 
     memset(visited,0,sizeof(visited));
     int cnt = 0, max_ = 0;
-    for(int i = 0 ; i < M ; i++)
-    {
-        for(int j = 0 ; j < N ; j++)
-        {
+    for(int i = 0 ; i < M ; i++){
+        for(int j = 0 ; j < N ; j++){
             if(!visited[i][j]){
                 max_ = max(max_, bfs(i,j));
                 cnt++;
@@ -72,12 +67,9 @@ int main()
     }
     printf("%d\n%d\n",cnt,max_);
 
-    for(int i = 0 ; i < M ; i++)
-    {
-        for(int j = 0 ; j < N ; j++)
-        {
-            for(int k = 0 ; k < 4 ; k++)
-            {
+    for(int i = 0 ; i < M ; i++){
+        for(int j = 0 ; j < N ; j++){
+            for(int k = 0 ; k < 4 ; k++){
                 if(m[i][j][k])
                 {
                     memset(visited,0,sizeof(visited));

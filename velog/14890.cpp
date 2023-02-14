@@ -7,29 +7,25 @@ int install[101][101];
 
 int road_row(int row)
 {
-    /* 항상 L개 만큼은 같은 높이 여야함 */
-    /* 높이 차이는 항사 1이여야함 */
-    /* */
-    /* 탐색을 하다가 높이가 같으면 진행 
-        높이가 1 다르면 L만큼 낮은 곳 탐색
-        높이가 1 이상 다르면 끝 
-    */
-    int ins[101] = {0,};
+    int ins[101] = {0,};    // 경사로 설치 
     int prev = 0, cur = 1;
     while(prev != N-1)
     {
-        //printf("%d %d\n",prev,cur);
         if(m[row][prev] == m[row][cur]){
             prev++; cur++;
-        } 
+        }
+        // 높이의 차가 1 초과이면 경사로 설치 불가 
         else if(abs(m[row][prev] - m[row][cur]) > 1)
             return 0;
+        // 경사로 설치 
         else if(m[row][prev] - m[row][cur] == 1)
         {
             for(int j = 0 ; j < L-1 ; j++)
             {
+                // 이미 경사로가 설치되어 있으므로 불가
                 if(ins[cur])
                     return 0;
+                // 경사로가 설치되는 곳의 높이는 모두 같아야 함 
                 if(cur+1 < N && m[row][cur] == m[row][cur+1])
                 {
                     ins[cur++] = 1;
@@ -47,13 +43,13 @@ int road_row(int row)
         {
             for(int j = 0 ; j < L-1 ; j++)
             {
-                if(ins[prev]){// printf("x\n");
+                if(ins[prev]){
                     return 0;}
                 if(prev-1 >= 0 && m[row][prev] == m[row][prev-1])
-                {   //printf("sibal");
+                {   
                     ins[prev--] = 1;
                 }
-                else{ //printf("923\n");
+                else{ 
                     return 0;
                 }
             }
@@ -64,24 +60,15 @@ int road_row(int row)
             cur++;
         }
     }
-    //printf("row %d\n",row);
     return 1;
 }
 
 int road_col(int col)
 {
-    /* 항상 L개 만큼은 같은 높이 여야함 */
-    /* 높이 차이는 항사 1이여야함 */
-    /* */
-    /* 탐색을 하다가 높이가 같으면 진행 
-        높이가 1 다르면 L만큼 낮은 곳 탐색
-        높이가 1 이상 다르면 끝 
-    */
     int ins[101] = {0,};
     int prev = 0, cur = 1;
     while(prev != N-1)
     {
-        //printf("%d %d\n",prev,cur);
         if(m[prev][col] == m[cur][col]){
             prev++; cur++;
         } 
@@ -110,13 +97,13 @@ int road_col(int col)
         {
             for(int j = 0 ; j < L-1 ; j++)
             {
-                if(ins[prev]){ //printf("x\n");
+                if(ins[prev]){ 
                     return 0;}
                 if(prev-1 >= 0 && m[prev][col] == m[prev-1][col])
-                { //  printf("sibal");
+                {
                     ins[prev--] = 1;
                 }
-                else{ //printf("923\n");
+                else{ 
                     return 0;
                 }
             }
@@ -127,7 +114,6 @@ int road_col(int col)
             cur++;
         }
     }
-    //printf("col %d\n",col);
     return 1;
 }
 

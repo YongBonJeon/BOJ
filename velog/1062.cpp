@@ -11,11 +11,9 @@ void study(int st, int num)
     if(num == K-5)
     {
         int ans = 0, success = 1;
-        for(auto x : input)
-        {
+        for(auto x : input){
             success = 1;
-            for(int i = 0 ; i < x.length() ; i++)
-            {
+            for(int i = 0 ; i < x.length() ; i++){
                 if(!alpha[x[i]-'a']){
                     success = 0;
                 }
@@ -46,9 +44,11 @@ int main()
     for(int i = 0 ; i < N ; i++){
         cin >> temp;
         int len = temp.length();
+        // anti, tica를 제외한 String 
         temp = temp.substr(4,len-8);
         input.push_back(temp);
     }
+    // 5글자 미리 학습
     alpha['a'-'a'] = 1;
     alpha['n'-'a'] = 1;
     alpha['t'-'a'] = 1;
@@ -56,5 +56,6 @@ int main()
     alpha['c'-'a'] = 1;
 
     study(0,0);
+
     printf("%d\n",max_);
 }

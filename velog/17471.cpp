@@ -16,6 +16,7 @@ int solve()
     q.push(cur);
     visited[cur] = 1;
 
+    // Section BFS
     while(!q.empty())
     {
         cur = q.front(); q.pop();
@@ -38,6 +39,7 @@ int solve()
     q.push(cur);
     visited[cur] = 1;
 
+    // Ohter section BFS
     while(!q.empty())
     {
         cur = q.front(); q.pop();
@@ -57,19 +59,17 @@ int solve()
     }
 
 
+    // 불가능한 방법이라 판단
     for(int i = 0 ; i < N ; i++)
         if(!visited[i])
             return -1;
 
+    // 각 선거구의 인원수 차이 반환 
     int ret = 0;
     for(auto x : section)
-    {
         ret += population[x];
-    }
     for(auto y : other)
-    {
         ret -= population[y];
-    }
 
     return abs(ret);
 }
@@ -79,22 +79,17 @@ void divide(int st)
     if(section.size() && section.size() != N){
         other.clear();
         for(int i = 0 ; i < N ; i++)
-        {
             if(find(section.begin(), section.end(), i) == section.end())
                 other.push_back(i);
-        }
         
         int ans;
         memset(visited,0,sizeof(visited));
         if((ans = solve()) != -1)
-        {
             min_ = min(min_, ans);
-        }
     }
     
 
-    for(int i = st ; i < N ; i++)
-    {
+    for(int i = st ; i < N ; i++){
         section.push_back(i);
         divide(i+1);
         section.pop_back();
@@ -117,16 +112,9 @@ int main()
         }
     }
     for(int i = 0 ; i < N ; i++)
-    /*{
-        for(int j = 0 ; j < N ; j++)
-            printf("%d ",m[i][j]);
-        printf("\n");
-    }*/
 
     divide(0);
     
-
-
     if(min_ == INT_MAX)
     {
         printf("-1\n");
