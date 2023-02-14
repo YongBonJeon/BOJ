@@ -4,81 +4,56 @@ using namespace std;
 int N,M;
 char m[5][5];
 int visited[5][5];
+int max_ = 0;
 
-/*void select()
+int cal_low()
 {
-
-    for(int i = 0 ; i < N ; i++)
-    {
-        for(int j = 0 ; j < M ; j++)
-        {
-            if(check[i][j] == 0 && check[i][j+1] == 0)
-            {
-                check[i][j] = 1; 
-                check[i][j+1] = 1;
-                asdf;
-                check[i][j] = 1;
-                check[i][j+1] = 1;
+    int check[5][5], sum = 0;
+    memset(check,0,sizeof(check));
+    for(int i = 0 ; i < N ; i++){
+        for(int j = 0 ; j < M ; j++){
+            int temp = 0;
+            int t = j;
+            while(t < M && !check[i][t] && !visited[i][t] ){
+                temp = temp*10 + m[i][t]-'0';
+                check[i][t] = 1;
+                t++;
             }
-
-            if(check[i][j] == 0 && check[i][j+1] == 0 && check[i][j+2] == 0)
-            {
-                check[i][j] = 1; 
-                check[i][j+1] = 1;
-                check[i][j+2] = 1;
-                asdf;
-                check[i][j] = 1;
-                check[i][j+1] = 1;
-                check[i][j+2] = 1;
-            }
-
-            if(check[i][j] == 0 && check[i][j+1] == 0 && check[i][j+2] == 0 && check[i][j+3] == 0)
-            {
-                check[i][j] = 1; 
-                check[i][j+1] = 1;
-                check[i][j+2] = 1;
-                check[i][j+3] = 1;
-                asdf;
-                check[i][j] = 1;
-                check[i][j+1] = 1;
-                check[i][j+2] = 1;
-                check[i][j+3] = 1;
-            }
-
-
+            sum += temp;
         }
     }
-}*/
-
-int dy[2] = {1,0};
-int dx[2] = {0,1};
-
-void fs(int y, int x, int num, int dir)
+    return sum;
+}
+int cal_col()
 {
-    int ny = y + dy[dir];
-    int nx = x + dx[dir];
-
-    visited[y][x] = num;
-
-    if(ny < 0 || nx < 0 || ny >= N || ny >= M || visited[ny][nx] != 0)
-        return ;
-    
-    fs(ny,nx,num,dir);
-
+    int check[5][5], sum = 0;
+    memset(check,0,sizeof(check));
+    for(int i = 0 ; i < N ; i++){
+        for(int j = 0 ; j < M ; j++){
+            int temp = 0;
+            int t = i;
+            while(t < N && !check[t][j] && visited[t][j] ){
+                temp = temp*10 + m[t][j]-'0';
+                check[t][j] = 1;
+                t++;
+            }
+            sum += temp;
+        }
+    }
+    return sum;
 }
 
-void select()
+void select(int start,int depth)
 {
+    max_ = max(cal_col()+cal_low(),max_);
 
-    for(int i = 0 ; i < N ; i++)
-    {
-        for(int j = 0 ; j < M ; j++)
-        {
-            if(!visited[i][j])
-            {
-                
-            }
-        }
+    for(int i = start; i < N*M ; i++){
+        int y = i / M;
+        int x = i % M;
+
+        visited[y][x] = 1;
+        select(i+1, depth+1);
+        visited[y][x] = 0;
     }
 
 }
@@ -89,4 +64,8 @@ int main()
 
     for(int i = 0 ; i < N ; i++)
         scanf("%s",m[i]);
+
+    select(0,0);
+
+    printf("%d\n",max_);
 }
