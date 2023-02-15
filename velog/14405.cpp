@@ -17,7 +17,6 @@ void make(string x)
     if(x.length() >= N)
     {
         if(!x.compare(s)){
-            //cout << "sibal" <<'\n';
             success = 1;
         }
         return ;
@@ -25,7 +24,6 @@ void make(string x)
 
     for(int i = 0 ; i < 3 ; i++)
     {
-        //cout << x.length() << " " << s[x.length()] << '\n';
         if(s[x.length()] == ex[i][0])
             make(x+ex[i]);
     }
