@@ -10,18 +10,13 @@ int main()
 {
     cin >> N >> input;
 
-    for(int i = 0 ; i < N ; i++)
-    {
+    for(int i = 0 ; i < N ; i++){
         if(input[i] == '(')
-        {
             s.push(i);
-        }
         else if(input[i] == ')')
         {
             if(s.empty())
-            {
                 continue;
-            }
             check[i] = check[s.top()] = 1;
             s.pop();
         }
@@ -30,7 +25,6 @@ int main()
     int local = 0, global = 0;
     for(int i = 0 ; i < N ; i++)
     {
-        //printf("%d ",check[i]);
         if(check[i])
             local++;
         else
@@ -41,5 +35,5 @@ int main()
     }
     global = max(global, local);
 
-    printf("%d\n",global);
+    cout << global << '\n';
 }
