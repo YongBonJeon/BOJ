@@ -13,7 +13,6 @@ bool success = 0;
 
 void make(string x)
 {
-    //cout << x << '\n';
     if(x.length() >= N)
     {
         if(!x.compare(s)){
