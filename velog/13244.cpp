@@ -7,7 +7,6 @@ int visited[1001];
 
 void dfs(int v)
 {
-    //printf("v %d ",v);
     visited[v] = 1;
 
     for(auto next : adj[v])
@@ -35,6 +34,7 @@ int main()
             adj[dt].push_back(st);
         }
 
+        // Cycle 판단
         if(N != M+1){
             printf("graph\n");
             continue;
@@ -43,6 +43,8 @@ int main()
         {
             dfs(1);
             bool success = 1;
+
+            // Connected 판단 
             for(int i = 1 ; i <= N ; i++)
             {
                 if(!visited[i])
