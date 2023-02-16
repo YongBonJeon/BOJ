@@ -11,8 +11,10 @@ int main()
 
     for(auto x : s)
     {
+        // 1글자씩 붙인다
         ret += x;
 
+        // 폭발 문자열이 발생할 때마다 삭제
         if(ret.size() >= pat.size() && ret.substr(ret.size()-pat.size(), pat.size()) == pat)
         {
             ret.erase(ret.end() - pat.size(), ret.end());
