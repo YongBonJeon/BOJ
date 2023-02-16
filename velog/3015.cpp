@@ -2,16 +2,17 @@
 using namespace std;
 
 int N;
-stack<pair<int, int>> s;
+stack<pair<long long, long long>> s;
 
 int main()
 {
     scanf("%d",&N);
 
-    int t,cnt,ans = 0;
+    long long t,cnt;
+    long long ans = 0;
     for(int i = 0 ; i < N ; i++)
     {
-        scanf("%d",&t);
+        scanf("%lld",&t);
 
         cnt = 1;
         while(!s.empty() && s.top().first <= t){
@@ -28,6 +29,6 @@ int main()
             ans++;
         s.push({t,cnt});
     }
-    printf("%d\n",ans);
+    printf("%lld\n",ans);
 
 }
