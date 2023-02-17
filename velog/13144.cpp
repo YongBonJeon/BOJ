@@ -22,29 +22,14 @@ int main()
     for(int i = 0 ; i < N ; i++)
         scanf("%lld",&s[i]);
 
+    // 모든 경우의 수
     long long ans = N*(N+1)/2;
 
     long long l = 0, r = 0;
-    /*check[s[l]] = 1;
 
     while(r < N)
     {
-        //printf("%d %d\n",l,r);
-        if(check[s[r]] > 1)
-        {
-            ans -= N-r;
-            check[s[l]]--;
-            l++;
-        }
-        else
-        {
-            r++;
-            check[s[r]]++;
-        }
-    }*/
-
-    while(r < N)
-    {
+        // s[r]이 추가된 새로운 수열
         if(!check[s[r]])
         {
             check[s[r]]++;
@@ -52,6 +37,8 @@ int main()
         }
         else
         {
+            // s[r]이 중복이 발생했을 때 
+            // 현재 수열이 포함된 모든 경우의 수를 제거
             ans -= N-r;
             check[s[l]]--;
             l++;
