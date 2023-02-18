@@ -18,16 +18,12 @@ int main()
         for(int j = i+i ; j <= N ; j += i)
             prime[j] = 0;
     }
-    /*for(int i = 2 ; i <= N ; i++)
-        if(prime[i])
-            printf("%d\n",i);    */
-    
+
     int l = 2, r = 3;
     int sum_prime = l+r, ans = 0;
 
     while(l <= N && r <= N)
     {
-        //printf("%d %d %d\n",l,r,sum_prime);
         if(sum_prime < N)
         {
             r++;
@@ -51,7 +47,6 @@ int main()
             l++;
             while(!prime[l])
                 l++;
-            //printf("ans ");
             ans++;
         }
     }
