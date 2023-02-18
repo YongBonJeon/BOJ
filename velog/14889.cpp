@@ -1,6 +1,51 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int N;
+int m[21][21];
+
+int go(vector<int> start, vector<int> link){
+    int sum = 0;
+    for(int i = 0 ; i < N/2 ; i++)
+            for(int j = 0 ; j < N/2 ; j++)
+                sum += m[start[i]][start[j]];
+        
+
+    for(int i = 0 ; i < N/2 ; i++)
+            for(int j = 0 ; j < N/2 ; j++)
+                sum -= m[link[i]][link[j]];
+    
+    return abs(sum);
+}
+
+int main(){
+
+    scanf("%d",&N);
+    for(int i = 0 ; i < N ; i++){
+        for(int j = 0 ; j < N ; j++)
+            scanf("%d",&m[i][j]);
+    }
+
+    int ret = INT_MAX;
+    for(int i = 0 ; i < (1 << N) ; i++){
+        if(__builtin_popcount(i) != N/2) continue;
+
+        vector<int> start, link;
+        
+        for(int j = 0 ; j < N ; j++){
+            if(i & 1 << j)
+                start.push_back(j);
+            else
+                link.push_back(j);
+        }
+
+        ret = min(ret, go(start, link));
+    }
+    printf("%d\n",ret);
+}
+
+
+/*
 int N, total = 0, min_ = 999;
 int temp[21][21];
 int stat[200] = {0,};
@@ -57,3 +102,4 @@ int main()
     printf("%d\n",min_);
 
 }
+*/
