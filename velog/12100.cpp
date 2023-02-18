@@ -9,14 +9,6 @@ void move(int num, int m[21][21])
         for(int j = 0 ; j < N ; j++){
             max_block = max(max_block, m[i][j]);
         }
-    /*printf("num %d\n",num);
-    for(int i = 0 ; i < N ; i++)
-    {
-        for(int j = 0 ; j < N ; j++)
-            printf("%d ",m[i][j]);
-        printf("\n");
-    }
-    printf("\n");*/
 
     if(num == 5)
         return ;

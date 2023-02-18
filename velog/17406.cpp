@@ -49,29 +49,20 @@ void solve(int m[51][51])
     for(int i = 0 ; i < N ; i++)
         for(int j = 0 ; j < M ; j++)
             temp[i][j] = m[i][j];
-    do
-    {
+    do{
         for(int i = 0 ; i < N ; i++)
             for(int j = 0 ; j < M ; j++)
                 m[i][j] = temp[i][j];
 
-        for(auto x : num){
+        for(auto x : num)
             rot(x, m);
-            /*for(int i = 0 ; i < N ; i++)
-            {
-                for(int j = 0 ; j < M ; j++)
-                    printf("%d ",m[i][j]);
-                printf("\n");
-            }*/
-        }
+ 
         int sum;
-        for(int i = 0 ; i < N ; i++)
-        {
+        for(int i = 0 ; i < N ; i++){
             sum = 0;
             for(int j = 0 ; j < M ; j++)
-            {
                 sum += m[i][j];
-            }
+            
             min_ = min(min_,sum);
         }
 
@@ -89,8 +80,7 @@ int main()
             scanf("%d",&m[i][j]);
 
     int y,x,range;
-    for(int i = 0 ; i < K ; i++)
-    {
+    for(int i = 0 ; i < K ; i++){
         scanf("%d %d %d",&y, &x, &range);
         cmd.push_back({y-1,x-1,range});
         num.push_back(i);

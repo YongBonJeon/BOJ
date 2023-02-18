@@ -32,18 +32,17 @@ void game(int num, int dir)
 
     /* 우측 톱니바퀴 연쇄 회전 */
     int next_num = num+1;
-    while(next_num != T+1 && tooth[next_num-1][2+dir] != tooth[next_num][6])
-    {
+    while(next_num != T+1 && tooth[next_num-1][2+dir] != tooth[next_num][6]){
         /* 상극일 경우 반대 방향으로 회전 */
         rot(next_num,-dir);
         next_num++;
         dir = -dir;
     }
     
+    /* 좌측 톱니바퀴 연쇄 회전 */
     next_num = num-1;
     dir = origin;
-    while(next_num != 0 && tooth[next_num+1][6+dir] != tooth[next_num][2])
-    {
+    while(next_num != 0 && tooth[next_num+1][6+dir] != tooth[next_num][2]){
         rot(next_num,-dir);
         next_num--;
         dir = -dir;
@@ -53,20 +52,11 @@ void game(int num, int dir)
 
 int order()
 {
-    for(auto go : cmd)
-    {
+    for(auto go : cmd){
         int num = go.first;
         int dir = go.second;
 
         game(num,dir);
-
-        /*for(int i = 1 ; i <= T ; i++)
-        {
-            for(int j = 0 ; j < 8 ; j++)
-                printf("%d ",tooth[i][j]);
-            printf("\n");
-        }
-        printf("\n");*/
     }
 
     int cnt = 0;
@@ -81,15 +71,12 @@ int main()
 {
     scanf("%d",&T);
     for(int i = 1 ; i <= T ; i++)
-    {
-        for(int j = 0 ; j < 8 ; j++){
+        for(int j = 0 ; j < 8 ; j++)
             scanf("%1d",&tooth[i][j]);
-        }
-    }
+
     scanf("%d",&K);
     int num, dir;
-    for(int i = 0 ; i < K ; i++)
-    {
+    for(int i = 0 ; i < K ; i++){
         scanf("%d %d",&num, &dir);
         cmd.push_back({num, dir});
     }

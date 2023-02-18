@@ -12,9 +12,7 @@ void game(int c[], int thrw, int ans)
 {
     if(max0 < ans)
         max0 = ans;
-    if(thrw == 10)
-    {
-        //printf("ans %d\n",ans);
+    if(thrw == 10){
         if(max0 < ans)
             max0 = ans;
         return ;
@@ -26,8 +24,6 @@ void game(int c[], int thrw, int ans)
 
         if(cur == 32)
             continue;
-        //printf("i %d %d %d %d\n",i, thrw, cur, ans);
-        //printf("%d %d %d %d\n",c[0],c[1],c[2],c[3]);
 
         if(cur == 5 || cur == 10 || cur == 15)
             nextv = adj[cur][1];
@@ -35,16 +31,13 @@ void game(int c[], int thrw, int ans)
             nextv = adj[cur][0];
 
         for(int j = 0 ; j < dice[thrw]-1 ; j++)
-        {
             nextv = adj[nextv][0];
-        }
 
         if(nextv != 32)
             if(nextv == c[(i+1)%4] || nextv == c[(i+2)%4] || nextv == c[(i+3)%4])
                 continue; 
 
         c[i] = nextv;
-        //ans += score_idx[nextv];
         game(c, thrw+1, ans + score_idx[nextv]);
         c[i] = cur;
     }

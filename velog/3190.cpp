@@ -14,9 +14,7 @@ int game()
     int ny,nx;
     dq.push_front({0,0});
 
-    while(1)
-    {
-        //printf("time %d dir %d\n",time,dir);
+    while(1){
         switch(ch[time])
         {
             case 'D':
@@ -28,9 +26,9 @@ int game()
                     dir += 4;
                 break;
         }
+
         ny = dq.front().first + dy[dir];
         nx = dq.front().second + dx[dir];
-
 
         /* 벽 부딪힘*/
         if(ny < 0 || nx < 0 || ny >= N || nx >= N)
@@ -49,19 +47,11 @@ int game()
         
         /* 사과 */
         if(M[ny][nx])
-        {
-            //printf("eat %d %d\n",ny,nx);
-            M[ny][nx] = 0;
-        }
+            M[ny][nx] = 0;  
         /* 사과 X */
         else
-        {
             dq.pop_back();
-        }
-        /*for(auto tail : dq){
-            printf("%d %d\n",tail.first, tail.second);
-        }
-        printf("\n");*/
+
         time++;
     }
     return time;
