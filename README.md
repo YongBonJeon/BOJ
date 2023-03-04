@@ -1,4 +1,5 @@
-# BOJ
+# 코딩 테스트 준비
+## BOJ
   백준 문제를 풀고 있습니다.
   
 [1541](https://velog.io/@bon0057/CC-%EB%B0%B1%EC%A4%80-1541%EB%B2%88-%EC%9E%83%EC%96%B4%EB%B2%84%EB%A6%B0-%EA%B4%84%ED%98%B8)
@@ -21,5 +22,6 @@
 [14502](https://velog.io/@bon0057/CC-%EB%B0%B1%EC%A4%80-14502-%EC%97%B0%EA%B5%AC%EC%86%8C)
 [1068](https://velog.io/@bon0057/CC-%EB%B0%B1%EC%A4%80-1068%EB%B2%88)
 [17298](https://velog.io/@bon0057/CC-%EB%B0%B1%EC%A4%80-17298%EB%B2%88-%EC%98%A4%ED%81%B0%EC%88%98)
-## 10988번 문제
-> Two pointer 방식으로 해결, reverse를 활용하는 것도 C++이기에 가능할 듯 
+
+## KaKao
+  카카오 코딩 테스트 기출 문제를 풀고 있습니다.
