@@ -13,7 +13,6 @@ int dfs(int y, int x){
         return 0;
 
     if(visited[y][x]){
-        //printf("%d %d\n",y,x);
         printf("-1\n");
         exit(0);
     }
